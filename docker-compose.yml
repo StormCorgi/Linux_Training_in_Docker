@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  apache:
+    build: ./Apache-01
+    ports:
+      - "80:80"
+    cap_add:
+      - SYS_ADMIN
+    security_opt:
+      - seccomp:unconfined
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - ./Apache-01/webroot:/var/www/html
+    networks:
+      train_net:
+        ipv4_address: 172.30.0.2
+    dns:
+      - 172.30.0.3
+
+  bind:
+    build: ./bind-01
+    ports:
+      - "53:53/udp"
+    cap_add:
+      - SYS_ADMIN
+    security_opt:
+      - seccomp:unconfined
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - ./Bind-01/etc/named.conf:/etc/named.conf
+      - ./Bind-01/etc/myzones.zones:/etc/myzones.zones
+      - ./Bind-01/var/named/zones_master:/var/named/zones_master
+    networks:
+      train_net:
+        ipv4_address: 172.30.0.3
+    dns:
+      - 127.0.0.1
+
+networks:
+  train_net:
+    driver: bridge
+    ipam:
+     driver: default
+     config:
+       - subnet: 172.30.0.0/24

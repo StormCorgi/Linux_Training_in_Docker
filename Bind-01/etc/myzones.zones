@@ -1,0 +1,4 @@
+zone "training.lan" IN {
+    type master;
+    file "zones_master/training.lan.zone";
+};
