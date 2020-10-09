@@ -1,0 +1,20 @@
+13c13
+< 	listen-on port 53 { 127.0.0.1; 172.30.0.3; };
+---
+> 	listen-on port 53 { 127.0.0.1; };
+21,29c21
+< 	# allow-query     { any; };
+< 	allow-query     { localhost; 172.30.0.0/24; };
+< 
+< 	# for security reason
+< 	version "unknown";
+< 	# forwarding
+< 	forward first;
+< 	forwarders { 1.1.1.1; };
+< 
+---
+> 	allow-query     { localhost; };
+70,71d61
+< # add new zones
+< include "/etc/myzones.zones";
+\ No newline at end of file

@@ -7,7 +7,8 @@ $TTL 3600 ; 1 hour
     1209600     ; expire 2 weeks
     900         ; minimum 15 min
 )
-        IN  NS      ns1.training.lan.
-ns1     IN  A       172.30.0.3
-apache  IN  A       172.30.0.2
-www     IN  CNAME   apache
+              IN  NS      bind-01.training.lan.
+bind-01       IN  A       172.30.0.3
+apache-01     IN  A       172.30.0.2
+apache-02     IN  A       172.30.0.2
+www           IN  CNAME   apache-01

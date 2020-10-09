@@ -1,0 +1,12 @@
+$TTL 3600 ; 1 hour
+@ IN SOA bind-01.training.lan. postmaster.training.lan. (
+    2020090701  ; serial
+    3600        ; refresh 1 hour
+    1200        ; retry 20 min
+    1209600     ; expire 2 weeks
+    900         ; minimum 15 min
+)
+        IN  NS      bind-01.training.lan.
+3       IN  PTR     bind-01.training.lan.
+2       IN  PTR     apache-01.training.lan.
+2       IN  PTR     apache-02.training.lan.

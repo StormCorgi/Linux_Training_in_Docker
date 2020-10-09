@@ -2,3 +2,8 @@ zone "training.lan" IN {
     type master;
     file "zones_master/training.lan.zone";
 };
+
+zone "0.30.172.in-addr.arpa" IN {
+    type master;
+    file "zones_master/0.30.172.in-addr.arpa.rev";
+};

@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   apache:
@@ -12,6 +12,8 @@ services:
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
       - ./Apache-01/webroot:/var/www/html
+      - ./Apache-01/webroot2:/var/www/html2
+      - ./Apache-01/etc/httpd/conf.d/:/etc/httpd/conf.d
     networks:
       train_net:
         ipv4_address: 172.30.0.2
@@ -41,6 +43,6 @@ networks:
   train_net:
     driver: bridge
     ipam:
-     driver: default
-     config:
-       - subnet: 172.30.0.0/24
+      driver: default
+      config:
+        - subnet: 172.30.0.0/24
