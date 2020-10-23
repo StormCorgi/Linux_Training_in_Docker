@@ -1,0 +1,15 @@
+$ORIGIN training.test.
+$TTL 3600 ; 1 hour
+@ IN SOA ns1.training.test. postmaster.training.test. (
+    2020090702  ; serial
+    3600        ; refresh 1 hour
+    1200        ; retry 20 min
+    1209600     ; expire 2 weeks
+    900         ; minimum 15 min
+)
+              IN  NS      bind-01.training.test.
+bind-01       IN  A       172.30.0.3
+apache-01     IN  A       172.30.0.2
+apache-02     IN  A       172.30.0.2
+www           IN  CNAME   apache-01
+ldap-01       IN  A       172.30.0.4

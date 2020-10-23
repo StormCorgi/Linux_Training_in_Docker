@@ -39,6 +39,38 @@ services:
     dns:
       - 127.0.0.1
 
+  ldap-server:
+    image: osixia/openldap:latest
+    container_name: ldap-host
+    volumes:
+      - ./ldap-01/DB:/var/lib/ldap
+      - ./ldap-01/slapd.d:/etc/ldap/slapd.d
+    environment:
+      LDAP_ORGANISATION: "training"
+      LDAP_DOMAIN: "training.test"
+      LDAP_ADMIN_PASSWORD: "Zaq1Xsw2"
+    networks:
+      train_net:
+        ipv4_address: 172.30.0.4
+    dns:
+      - 172.30.0.3
+
+  ldap-admin:
+    image: osixia/phpldapadmin:latest
+    container_name: ldap-admin
+    environment:
+      PHPLDAPADMIN_LDAP_HOSTS: "ldap"
+      PHPLDAPADMIN_HTTPS: "false"
+    ports:
+      - "8080:80"
+    links:
+      - "ldap-server:ldap"
+    networks:
+      train_net:
+        ipv4_address: 172.30.0.5
+    dns:
+      - 172.30.0.3
+
 networks:
   train_net:
     driver: bridge

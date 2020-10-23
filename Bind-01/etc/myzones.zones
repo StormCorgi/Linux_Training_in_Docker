@@ -1,6 +1,6 @@
-zone "training.lan" IN {
+zone "training.test" IN {
     type master;
-    file "zones_master/training.lan.zone";
+    file "zones_master/training.test.zone";
 };
 
 zone "0.30.172.in-addr.arpa" IN {
